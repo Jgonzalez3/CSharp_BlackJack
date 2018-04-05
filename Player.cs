@@ -16,8 +16,8 @@ namespace Players{
             Card newcard = cards.Deal();
             handvalue += newcard.val;
             hand.Add(newcard);
-            Console.WriteLine(newcard.stringVal+" of "+newcard.suit + " value: " + newcard.val);
-            Console.WriteLine(this.name + " " + "handvalue: " + handvalue);
+            Console.WriteLine(this.name + ": " + newcard.stringVal+" of "+newcard.suit + " value: " + newcard.val);
+            Console.WriteLine(this.name + ": " + "handvalue: " + handvalue);
             // Below for Ace transform to 1 based off handvalue
             int aceCount = 0;
             if (newcard.stringVal == "Ace"){
@@ -27,15 +27,16 @@ namespace Players{
                 if(handvalue > 21){
                     if(hand[idx].stringVal == "Ace"){
                         for(int ace = 0; ace<aceCount; ace++){
-                            hand[ace].val = 1;
+                            hand[idx].val = 1;
                             handvalue -= 10;
+                            Console.WriteLine(this.name + ": " + newcard.stringVal+" of "+newcard.suit + " value: " + newcard.val);
                             continue;
                         }
                     }
                 }
             }
             // Below is to discard player hand if lose/Bust.
-            if (handvalue > 22){
+            if (handvalue > 21){
                 Console.WriteLine("BUST!!");
                 Discard();
                 bet = 0;
@@ -63,8 +64,8 @@ namespace Players{
             Card newcard = cards.Deal();
             handvalue += newcard.val;
             hand.Add(newcard);
-            Console.WriteLine(newcard.stringVal+" of "+newcard.suit + " value: " + newcard.val);
-            Console.WriteLine(this.name + " " +"handvalue: " + handvalue);
+            Console.WriteLine(this.name + ": " +  newcard.stringVal+" of "+newcard.suit + " value: " + newcard.val);
+            Console.WriteLine(this.name + ": " +"handvalue: " + handvalue);
 
             if (handvalue > 22){
                 Console.WriteLine("BUST Players WIN and Dealers LOSE!!");
